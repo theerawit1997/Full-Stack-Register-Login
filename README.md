@@ -1,6 +1,7 @@
 # Full-Stack-Register-Login
- 
-# install back
+Learn and test the system \
+
+# install
 /api \
 npm install express cors \
 npm install -g nodemon \
