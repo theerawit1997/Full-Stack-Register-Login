@@ -5,7 +5,9 @@ Learn and test the system
 /api \
 npm install express cors \
 npm install -g nodemon \
-npm install --save mysql2
+npm install body-parser \
+npm install --save mysql2 \
+npm install bcrypt
 
 # start
 cd api \
