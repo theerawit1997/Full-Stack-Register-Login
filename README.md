@@ -8,6 +8,7 @@ npm install -g nodemon \
 npm install body-parser \
 npm install --save mysql2 \
 npm install bcrypt
+npm install jsonwebtoken
 
 # start
 cd api \
