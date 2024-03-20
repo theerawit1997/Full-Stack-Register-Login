@@ -39,10 +39,40 @@ export default function SignInSide() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
+    const jsonData = {
       email: data.get("email"),
       password: data.get("password"),
-    });
+    };
+    // console.log({
+    //   email: data.get("email"),
+    //   password: data.get("password"),
+    // });
+
+    async function postJSON(data) {
+      try {
+        const response = await fetch("http://localhost:4000/login", {
+          method: "POST", // or 'PUT'
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(jsonData),
+        });
+
+        const result = await response.json();
+        if (result.status === "success") {
+          console.log("login status:", result.status);
+          alert("login success");
+        } else {
+          console.log("login status:", result.status);
+          alert("login failed :" + result.message);
+        }
+      } catch (error) {
+        console.error("Error:", error);
+        alert("Error:", error);
+      }
+    }
+
+    postJSON(data);
   };
 
   return (
