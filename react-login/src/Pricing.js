@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useEffect } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -108,6 +108,33 @@ const footers = [
 const defaultTheme = createTheme();
 
 export default function Pricing() {
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await fetch("http://localhost:4000/authorization", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+          },
+        });
+
+        const result = await response.json();
+        if (result.status === "success") {
+          alert("Authentication success");
+        } else {
+          alert("Authentication failed: " + result.message);
+          window.location = "/login";
+        }
+      } catch (error) {
+        console.error("Error:", error);
+        alert("Error: " + error.message);
+      }
+    };
+
+    fetchData();
+  }, []);
   return (
     <ThemeProvider theme={defaultTheme}>
       <GlobalStyles
