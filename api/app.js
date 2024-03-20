@@ -54,7 +54,15 @@ app.post("/login", jsonParser, function (req, res, next) {
         user[0].password,
         function (err, LoginHash) {
           if (LoginHash) {
-            res.json({ status: "success", message: "Login success" });
+            var token = jwt.sign({ email: user[0].email }, secret, {
+              expiresIn: "1h",
+            });
+            res.json({
+              status: "success",
+              message: "Login success",
+              token: token,
+              expiresIn: "1h",
+            });
           } else {
             res.json({ status: "error", message: "Invalid password" });
           }
