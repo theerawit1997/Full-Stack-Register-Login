@@ -5,6 +5,8 @@ var bodyParser = require("body-parser");
 var jsonParser = bodyParser.json();
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
+var jwt = require("jsonwebtoken");
+const secret = "man-1997";
 
 app.use(cors());
 
@@ -31,6 +33,35 @@ app.post("/register", jsonParser, function (req, res, next) {
       }
     );
   });
+});
+
+app.post("/login", jsonParser, function (req, res, next) {
+  connection.execute(
+    "SELECT * FROM users WHERE email = ?",
+    [req.body.email],
+    function (err, user, fields) {
+      if (err) {
+        res.json({ status: "error", message: err.message });
+        return;
+      }
+      if (user.length == 0) {
+        res.json({ status: "error", message: "Invalid email" });
+        return;
+      }
+      // Load hash from your password DB.
+      bcrypt.compare(
+        req.body.password,
+        user[0].password,
+        function (err, LoginHash) {
+          if (LoginHash) {
+            res.json({ status: "success", message: "Login success" });
+          } else {
+            res.json({ status: "error", message: "Invalid password" });
+          }
+        }
+      );
+    }
+  );
 });
 
 app.listen(4000, function () {
