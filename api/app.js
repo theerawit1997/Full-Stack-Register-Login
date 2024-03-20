@@ -72,6 +72,16 @@ app.post("/login", jsonParser, function (req, res, next) {
   );
 });
 
+app.post("/authorization", jsonParser, function (req, res, next) {
+  try {
+    const token = req.headers.authorization.split(" ")[1];
+    var decoded = jwt.verify(token, secret);
+    res.json({ status: "success", message: decoded });
+  } catch (err) {
+    res.json({ status: "error", message: err.message });
+  }
+});
+
 app.listen(4000, function () {
   console.log("CORS-enabled web server listening on port 4000");
 });
