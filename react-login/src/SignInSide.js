@@ -60,10 +60,13 @@ export default function SignInSide() {
 
         const result = await response.json();
         if (result.status === "success") {
-          console.log("login status:", result.status);
+          //   console.log("login status:", result.status);
           alert("login success");
+          localStorage.setItem("token", result.token);
+          //   console.log("token:", result.token);
+          window.location = "/pricing";
         } else {
-          console.log("login status:", result.status);
+          //   console.log("login status:", result.status);
           alert("login failed :" + result.message);
         }
       } catch (error) {
