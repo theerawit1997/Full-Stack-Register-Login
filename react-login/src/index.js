@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SignInSide from "./SignInSide";
 import Pricing from "./Pricing";
+import SignUp from "./SignUp";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -14,6 +15,7 @@ root.render(
       <Route path="/" element={<SignInSide />}></Route>
       <Route path="/login" element={<SignInSide />}></Route>
       <Route path="/pricing" element={<Pricing />}></Route>
+      <Route path="/signup" element={<SignUp />}></Route>
     </Routes>
   </BrowserRouter>
 );
