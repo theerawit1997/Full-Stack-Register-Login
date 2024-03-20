@@ -11,8 +11,13 @@ npm install bcrypt
 npm install jsonwebtoken
 
 /react-login \
-npx create-react-app react-login
+npx create-react-app react-login \
+npm install @mui/material @emotion/react @emotion/styled \
+npm install @mui/icons-material
 
 # start
 cd api \
-nodemon app.js 
+nodemon app.js \
+
+cd react-login \
+npm start
