@@ -136,6 +136,13 @@ export default function Pricing() {
 
     fetchData();
   }, []);
+
+  const handelLogout = (event) => {
+    event.preventDefault();
+    localStorage.removeItem("token");
+    window.location = "/login";
+  };
+
   return (
     <ThemeProvider theme={defaultTheme}>
       <GlobalStyles
@@ -178,8 +185,14 @@ export default function Pricing() {
               Support
             </Link>
           </nav>
-          <Button href="#" variant="outlined" sx={{ my: 1, mx: 1.5 }}>
-            Login
+          <Button
+            href="#"
+            color="error"
+            variant="contained"
+            sx={{ my: 1, mx: 1.5 }}
+            onClick={handelLogout}
+          >
+            Logout
           </Button>
         </Toolbar>
       </AppBar>
