@@ -122,14 +122,15 @@ export default function Pricing() {
 
         const result = await response.json();
         if (result.status === "success") {
-          alert("Authentication success");
+          // alert("Authentication success");
         } else {
-          alert("Authentication failed: " + result.message);
+          alert("Authentication failed");
+          localStorage.removeItem("token");
           window.location = "/login";
         }
       } catch (error) {
         console.error("Error:", error);
-        alert("Error: " + error.message);
+        alert("Error: " + error);
       }
     };
 
